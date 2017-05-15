@@ -66,7 +66,7 @@ Changes from the original
   breaking the library integration with when used with a different Matrix2D
   prototype instance.
 
-* Add support for h, H, v and V path segments.
+* Add support for a, h, H, v and V path segments.
 
 Credits
 -------

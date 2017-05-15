@@ -130,3 +130,13 @@ exports.testIntersectRelativeRectangle = function(beforeExit, assert) {
   assert.equal(result.points[0].equals(new Point2D(300, 100)), true);
   assert.equal(result.points[1].equals(new Point2D(50, 100)), true);
 }
+
+exports.testIntersectRelativeArcLine = function(beforeExit, assert) {
+  var arc = shape("path", {d: "M0 20 a 20 20, 0, 1, 0, 20 -20"}); // Three-quarter circle around 20,20
+  var line = shape("line", {x1: 0, y1:0, x2:40, y2:40}); // Diagonal right-down
+  var result = intersect(arc, line);
+
+  assert.equal(1, result.points.length);
+  assert.equal(result.points[0].distanceFrom(new Point2D(20, 20)), 20);
+  assert.equal(result.points[0].x, result.points[0].y);
+}
