@@ -7,9 +7,19 @@ Possible to intersect rotated/scaled/skewed shapes.
 
 Installation
 -------
+
+To install the original, run
+
     npm install svg-intersections
 
+If you would like to use this version instead, I haven't uploaded it yet so
+you'll have to add this repo to your `package.json`:
 
+```
+"dependencies": {
+  "svg-intersections": "https://github.com/nicolassatragno/svg-intersections"
+}
+```
 
 API
 ---
@@ -49,6 +59,14 @@ Usage example
 
 ```
 
+Changes from the original
+-------------------------
+
+* Do not use `instanceOf` to check for transformation matrices. This was
+  breaking the library integration with when used with a different Matrix2D
+  prototype instance.
+
+* Add support for h, H, v and V path segments.
 
 Credits
 -------
@@ -58,5 +76,5 @@ The implementation is based on the intersection procedures by Kevin Lindsey
 Robert Benko ([http://www.quazistax.com](www.quazistax.com)).
 
 Cloned from [Signavio](https://github.com/signavio/svg-intersections) because
-the repo does not have issues enabled and I need to quickly fix
-something `¯\_(ツ)_/¯`
+the repo does not have issues enabled and I needed to do some changes to suit
+the library to my needs.
