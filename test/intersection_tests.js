@@ -98,3 +98,35 @@ exports.testIntersectArcArc = function(beforeExit, assert) {
   assert.ok(Math.abs(result.points[0].x - 10) <= Number.EPSILON * 10);
   assert.ok(Math.abs(result.points[0].y - 17) <= 1);
 }
+
+exports.testIntersectHVAbsoluteRectangle = function(beforeExit, assert) {
+  var rect = shape("path", {d: "M 50 50 H 300 V 300 H 50 V 50"});
+  var line1 = shape("line", {x1:275, y1:0, x2:275, y2:400});
+  var line2 = shape("line", {x1:0, y1:100, x2:500, y2:100});
+
+  var result = intersect(rect, line1);
+  assert.equal(2, result.points.length);
+  assert.equal(result.points[0].equals(new Point2D(275, 50)), true);
+  assert.equal(result.points[1].equals(new Point2D(275, 300)), true);
+
+  result = intersect(rect, line2);
+  assert.equal(2, result.points.length);
+  assert.equal(result.points[0].equals(new Point2D(300, 100)), true);
+  assert.equal(result.points[1].equals(new Point2D(50, 100)), true);
+}
+
+exports.testIntersectRelativeRectangle = function(beforeExit, assert) {
+  var rect = shape("path", {d: "M 50 50 h 250 v 250 h -250 v -250"});
+  var line1 = shape("line", {x1:275, y1:0, x2:275, y2:400});
+  var line2 = shape("line", {x1:0, y1:100, x2:500, y2:100});
+
+  var result = intersect(rect, line1);
+  assert.equal(2, result.points.length);
+  assert.equal(result.points[0].equals(new Point2D(275, 50)), true);
+  assert.equal(result.points[1].equals(new Point2D(275, 300)), true);
+
+  result = intersect(rect, line2);
+  assert.equal(2, result.points.length);
+  assert.equal(result.points[0].equals(new Point2D(300, 100)), true);
+  assert.equal(result.points[1].equals(new Point2D(50, 100)), true);
+}
